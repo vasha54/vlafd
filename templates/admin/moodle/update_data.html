@@ -1,0 +1,78 @@
+{% extends 'admin/base.html' %}
+{% load i18n admin_urls %}
+
+{% block breadcrumbs %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
+            <h1 class="h4 m-0 pr-3 mr-3 border-right"> Moodles </h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+                <li class="breadcrumb-item"><a href="/admin/moodle/">Módulo de Moodle</a></li>
+                <li class="breadcrumb-item"><a href="/admin/moodle/moodle">Moodles</a></li>
+                <li class="breadcrumb-item">Actualizando datos de la plataforma</li>
+            </ol>
+        </div>
+        <div class="col-12 col-md-auto d-flex align-items-center justify-content-end page-actions">
+        </div>
+    </div>
+</div>
+            
+{% endblock %}
+{% block content %} 
+
+<div class="content col-12">
+    <div class="container-fluid">
+        <section id="content" class="content">
+            <div class="row">
+                <div class="card col-12">
+                    <div class="card-body">
+                      {% if succes == True %}
+                        <div class="row col-12">
+                            <div class="alert alert-success round row m-2 col-12" role="alert">
+                                <i class="fas fa-info-circle "></i>
+                                <span class="col-11" id="errorAddActivity">{{ message }}</span>
+                            </div>
+                        </div>
+
+                        {% if logs %}
+                        <div class="row col-12">
+                            <div class="alert alert-success round row m-2 col-12" role="alert">
+                                <i class="fas fa-info-circle "></i>
+                                <ul>
+                                    {% for l in logs %}
+                                        <li>{{l}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                      {% else %}
+                        <div class="row col-12">
+                            <div class="alert alert-danger round row m-2 col-12" role="alert">
+                                <i class="fas fa-exclamation-circle "></i>
+                                <span class="col-11" id="errorAddActivity">{{ message }}</span>
+                            </div>
+                        </div>
+                      {% endif %}
+                       <div class="col-12 row mt-2">
+                            <div class="text-center">
+                                <form action="" method="post">{% csrf_token %} 
+                                    <input type="text" name="urlBack" id="urlBack" value="{{urlBack}}" style="display: none;">
+                                    {% if succes == False%}
+                                    <button  class="btn btn-danger" > Intentarlo de nuevo</button>
+                                    {% endif %}
+                                    <a href="{{urlBack}}" class="btn btn-primary">Volver atrás</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br class="clear">
+        </section>
+    </div>
+</div>
+
+{% endblock %}
