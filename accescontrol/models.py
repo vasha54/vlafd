@@ -16,50 +16,6 @@ def renameFile(instance,filename):
 # Create your models here.
 class UserDRPAManager(UserManager):
     
-    def registerPersonUM(self,_person):
-        if 'aunteticate' in _person.keys() and _person['aunteticate']==True:
-            tusername = ''
-            tfirst_name = ' '
-            tlast_name = ' '
-            temail = ' '
-            tis_staff = 0
-            tis_active = 1
-            tnumberPhone =''
-            tnumberMobile =''
-            tpassword = ''
-            rol =Role.INVITED
-            
-            if 'username' in _person.keys():
-                tusername=_person['username']
-            if 'password' in _person.keys():
-                tpassword=_person['password']
-            if 'givenName' in _person.keys():
-                tfirst_name = tfirst_name.join(_person['givenName']) 
-            if 'sn' in _person.keys():
-                tlast_name = tlast_name.join(_person['sn'])   
-            if 'mail' in _person.keys():
-                temail = temail.join(_person['mail'])
-            if 'rol' in _person.keys():
-                rol = _person['rol']
-                
-            usser = UserDRPA(username=tusername,is_staff=tis_staff,
-                             is_active=tis_active,first_name=tfirst_name,last_name=tlast_name,email=temail,
-                             numberMobile=tnumberMobile,numberPhone=tnumberPhone)
-            usser.password = make_password(tpassword)
-            usser.save()
-            groupUser = Role.objects.get(name=rol)
-            if groupUser !=None: 
-                groupUser.user_set.add(usser)
-            
-    def existUsserWithAccountManual(self,_user,_password):
-        exist = False
-        if self.existUsserWithAccount(_user,_password) == True:
-            usserOBJ = self.get(username=_user)
-            if usserOBJ!=None and usserOBJ.typeAccount == UserDRPA.MANUAL:
-                exist = True
-            
-        return exist
-    
     def existUsserWithAccount(self, _user, _password):
         exist = False
         try:
@@ -119,12 +75,8 @@ class RoleManager(GroupManager):
 
 class UserDRPA(AbstractUser):
     
-    numberPhoneValidator = RegexValidator(r"^\d+$", 'Los campos de números de teléfono y móvil admite solamente dígitos')
-    numberPhone = models.CharField('Número de teléfono',max_length=11,validators=[numberPhoneValidator],blank=True,default='')
-    numberMobile = models.CharField('Número del móvil',max_length=11,validators=[numberPhoneValidator],blank=True,default='')
     avatar= models.ImageField("Avatar",upload_to=renameFile,null=False,blank=False, default="avatar/photo-profile-default.png")
     directorySave = 'avatar'
-    
     objects = UserDRPAManager()
     
     
@@ -145,15 +97,11 @@ class UserDRPA(AbstractUser):
         verbose_name_plural = 'Usuarios'
     
 class Role(Group):
-    ADMIN           = 'admin'
-    MANAGER         = 'gestor'
-    MEMBER_PLATINUM = 'miembro_platino'
-    MEMBER_GOLD     = 'miembro_oro'
-    MEMBER_SILVER   = 'miembro_plata'
-    MEMBER          = 'miembro'
-    INVITED         = 'invitado'
+    ADMIN    = 'admin'
+    TEACHER  = 'profesor'
+    STUDENT  = 'estudiante'
     
-    ROLES_SYSTEM = [ADMIN,MANAGER,MEMBER_PLATINUM,MEMBER_GOLD,MEMBER_SILVER,MEMBER,INVITED]
+    ROLES_SYSTEM = [ADMIN,TEACHER,STUDENT]
     
     objects = RoleManager()
     

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'applications',
+    'application',
     'accescontrol',
     ]
 
@@ -144,9 +144,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
 
-NAME_APP= 'Ecosistema para la Formacion del Docente de la Universidad de Matanzas'
+NAME_APP= 'Laboratorio Virtual de Contabilidad y Finanzas'
 
-NAME_APP_SHORT = 'EFDUM'
+NAME_APP_SHORT = 'LVCF'
 
 ITEM_PER_PAGE = 5
 
@@ -316,4 +316,4 @@ JAZZMIN_UI_TWEAKS = {
 
 ITEM_PER_PAGE = 5
 
-NAME_APP= 'Ecosistema de Támara'
+NAME_APP= 'Laboratorio Virtual de Contabilidad y Finanzas'

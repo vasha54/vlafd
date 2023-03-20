@@ -18,7 +18,7 @@ class AddUserAccesControlForm(UserCreationForm):
         
     class Meta:
         model = UserDRPA
-        fields = ['numberPhone','numberMobile','avatar','first_name','username','last_name','email','is_active']
+        fields = ['avatar','first_name','username','last_name','email','is_active']
         exclude = []
         
 class UpdateUserAccesControlForm(UserChangeForm):
@@ -37,7 +37,7 @@ class UpdateUserAccesControlForm(UserChangeForm):
         
     class Meta:
         model = UserDRPA
-        fields = ['first_name','username','last_name','numberPhone','numberMobile','avatar','email','is_active']#[]
+        fields = ['first_name','username','last_name','avatar','email','is_active']#[]
         exclude = []#['password']
             
 

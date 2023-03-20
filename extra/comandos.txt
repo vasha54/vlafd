@@ -1,0 +1,39 @@
+﻿/*Para crear la estructura basica*/
+django­admin.py startproject misitio
+
+
+
+/*Crear un modulo o una aplicacion*/
+python manage.py startapp <nombre del modulo>
+
+
+/*Chequear los modelos creados dentro de una aplicacion o modulo*/
+
+python manage.py check <nombre del modulo del modelo>
+
+
+/*Una vez que todo está en orden, necesitamos guardar las migraciones para los
+modelos
+ en un archivo de control, para que Django pueda encontrarlas al sincronizar
+el esquema
+ de la base de datos. Ejecuta el comando makemigrations de esta manera:*/
+
+python manage.py makemigrations
+
+
+/*para realizar los cambios al esquema de la base de datos es necesario usar el
+comando
+ mígrate, que se encarga de crear las tablas de la base de datos:*/
+
+
+python manage.py migrate
+
+
+/*Crear el super usuario*/
+python manage.py createsuperuser
+
+/*Inciar el servidor*/
+python manage.py runserver
+
+//Para crear los assets
+python manage.py collectstatic

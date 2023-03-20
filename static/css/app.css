@@ -1,0 +1,46 @@
+.label {
+    font-weight: 600;
+    color: rgba(1, 41, 112, 0.6);
+}
+
+.calendar {
+  width: 98%;
+  margin: auto;
+  font-size: 13px;
+}
+
+.calendar tr, .calendar td {
+  border: 1px solid black;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.calendar td {
+  width: 200px;
+  min-height: 150px;
+  height: 150px;
+  padding: 5px 0px 0px 5px;
+}
+
+
+.month {
+  font-size: 25px;
+}
+
+.date {
+  font-size: 16px;
+
+}
+/*
+ul {
+  height: 100%;
+  padding: 0px 5px 0px 20px;
+}
+
+a {
+  color: #17a2b8;
+}*/

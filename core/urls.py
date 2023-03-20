@@ -22,7 +22,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 from core.util import set_language
 
-from applications.views import LoginView, HomeView
+from application.views import LoginView, HomeView
 
 import accescontrol.urls
 

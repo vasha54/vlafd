@@ -27,7 +27,7 @@ class RoleAdmin(GroupAdmin):
     countUsers.admin_order_field = "_countUsers"
 
 class UserDRPAAdmin(UserAdmin):
-    list_display  = ('photo','nameCompleted','email','active','numberPhone','numberMobile')
+    list_display  = ('photo','nameCompleted','email','active')
     search_fields = ['username__contains','first_name__contains','last_name__contains','email__contains','numberPhone__contains','numberMobile__contains']
     list_filter = ['is_active']
     filter_horizontal = ('groups', 'user_permissions',) 
@@ -40,14 +40,14 @@ class UserDRPAAdmin(UserAdmin):
     fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','first_name','last_name','email', 'numberPhone','numberMobile','avatar','password','is_superuser', 'is_staff', 'is_active', 'groups'),
+            'fields': ('username','first_name','last_name','email','avatar','password','is_superuser', 'is_staff', 'is_active', 'groups'),
         }),
     )
     
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'username', 'password1','password2','email', 'numberPhone','numberMobile','avatar','is_superuser', 'is_staff', 'is_active', 'groups'),
+            'fields': ('first_name', 'last_name', 'username', 'password1','password2','email','avatar','is_superuser', 'is_staff', 'is_active', 'groups'),
         }),
         
     )
