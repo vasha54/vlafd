@@ -3,6 +3,10 @@ from django.contrib.auth import authenticate , login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.views.generic import View
+from django.contrib.auth import authenticate , login, logout
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control
 
 from application.forms import LoginForm
 
@@ -103,5 +107,63 @@ class HomeView(ViewApp):
     def post(self, request, *args, **kwargs):
         self.data = self.getDataInit()
         return render(request, self.template_name,self.data)
+    
+class ContactView(ViewApp):
+    
+    def dispatch(self,*args,**kwargs):
+        return super(ContactView,self).dispatch(*args,**kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        dataInit = self.getDataInit(request)
+        for k,v in dataInit.items():
+            self.data[k]=v
+        
+        return render(request,self.template_name,self.data)
+    
+    def post(self, request, *args, **kwargs):
+        dataInit = self.getDataInit(request)
+        for k,v in dataInit.items():
+            self.data[k]=v
+        
+        return render(request,self.template_name,self.data)
+
+class FAQView(ViewApp):
+    
+    def dispatch(self,*args,**kwargs):
+        return super(FAQView,self).dispatch(*args,**kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        dataInit = self.getDataInit(request)
+        for k,v in dataInit.items():
+            self.data[k]=v
+        
+        return render(request,self.template_name,self.data)
+    
+    def post(self, request, *args, **kwargs):
+        dataInit = self.getDataInit(request)
+        for k,v in dataInit.items():
+            self.data[k]=v
+        
+        return render(request,self.template_name,self.data)
+    
+class ProfileView(ViewApp):
+    
+    template_name = 'profile.html'
+    
+    def dispatch(self,*args,**kwargs):
+        return super(ProfileView,self).dispatch(*args,**kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        self.data = self.getDataInit(request)
+        return render(request,self.template_name,self.data)
+    
+    def post(self, request, *args, **kwargs):
+        self.data = self.getDataInit(request)
+        return render(request,self.template_name,self.data)
+    
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)    
+def logoutView(request):
+    logout(request)
+    return HttpResponseRedirect('/')
     
     

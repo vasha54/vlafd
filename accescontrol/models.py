@@ -100,8 +100,9 @@ class Role(Group):
     ADMIN    = 'admin'
     TEACHER  = 'profesor'
     STUDENT  = 'estudiante'
+    INVITED = 'invitado'
     
-    ROLES_SYSTEM = [ADMIN,TEACHER,STUDENT]
+    ROLES_SYSTEM = [ADMIN,TEACHER,STUDENT,INVITED]
     
     objects = RoleManager()
     

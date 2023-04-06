@@ -22,7 +22,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 from core.util import set_language
 
-from application.views import LoginView, HomeView
+from application.views import LoginView, HomeView ,ContactView, ProfileView, FAQView, logoutView
 
 import accescontrol.urls
 
@@ -30,6 +30,9 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path('accescontrol/',include(accescontrol.urls)),
+    path('contact',ContactView.as_view(), name='contact'),
+    path('profile',ProfileView.as_view(), name='profile'),
+    path('faq',FAQView.as_view(), name='faq'),
     
     path('',LoginView.as_view(), name='index'),
     path('home',HomeView.as_view(), name='home'), 
